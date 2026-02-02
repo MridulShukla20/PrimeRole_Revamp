@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { AIEmployeeData } from "@/data/aiEmployees";
+import { cardHoverVariants } from "@/components/motion/animations";
 
 interface EmployeeCardProps {
   employee: AIEmployeeData;
@@ -9,11 +11,14 @@ interface EmployeeCardProps {
 
 export function EmployeeCard({ employee }: EmployeeCardProps) {
   return (
-    <Link
-      href={`/ai-employees/${employee.id}`}
-      className="block bg-white border border-neutral-200 rounded-xl p-6 shadow-sm transition-all duration-150 ease-in-out hover:border-primary/25 hover:shadow-accent-md hover:-translate-y-px"
-    >
-      <div className="flex flex-col gap-2">
+    <Link href={`/ai-employees/${employee.id}`} className="block">
+      <motion.div
+        className="bg-white border border-neutral-200 rounded-xl p-6"
+        initial="rest"
+        whileHover="hover"
+        variants={cardHoverVariants}
+      >
+        <div className="flex flex-col gap-2">
         <h3 className="text-base font-semibold leading-normal text-neutral-900">
           {employee.name}
         </h3>
@@ -25,7 +30,8 @@ export function EmployeeCard({ employee }: EmployeeCardProps) {
             {employee.department}
           </span>
         </div>
-      </div>
+        </div>
+      </motion.div>
     </Link>
   );
 }

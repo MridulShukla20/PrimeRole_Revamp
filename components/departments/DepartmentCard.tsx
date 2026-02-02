@@ -1,5 +1,9 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { Department } from "./constants";
+import { cardHoverVariants } from "@/components/motion/animations";
 
 interface DepartmentCardProps {
   department: Department;
@@ -7,7 +11,12 @@ interface DepartmentCardProps {
 
 export default function DepartmentCard({ department }: DepartmentCardProps) {
   return (
-    <div className="bg-white rounded-2xl p-8 border border-neutral-200 shadow-soft hover:shadow-medium transition-shadow">
+    <motion.div
+      className="bg-white rounded-2xl p-8 border border-neutral-200"
+      initial="rest"
+      whileHover="hover"
+      variants={cardHoverVariants}
+    >
       {/* Department Name */}
       <h3 className="text-heading-lg text-neutral-900 mb-3">
         {department.name}
@@ -72,6 +81,6 @@ export default function DepartmentCard({ department }: DepartmentCardProps) {
           />
         </svg>
       </Link>
-    </div>
+    </motion.div>
   );
 }

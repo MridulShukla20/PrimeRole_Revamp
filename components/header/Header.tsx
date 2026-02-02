@@ -1,8 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { Button } from "@/components/ui/Button";
+import { buttonHoverVariants } from "@/components/motion/animations";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -49,18 +52,12 @@ export default function Header() {
 
           {/* Desktop CTAs */}
           <div className="hidden lg:flex items-center gap-3">
-            <Link
-              href="/book-demo"
-              className="px-4 py-2 text-label-md text-neutral-700 hover:text-neutral-900 transition-colors"
-            >
+            <Button href="/book-demo" variant="text">
               Book a demo
-            </Link>
-            <Link
-              href="/signup"
-              className="px-5 py-2.5 bg-primary text-white rounded-lg text-label-md hover:bg-primary-600 transition-colors shadow-soft"
-            >
+            </Button>
+            <Button href="/signup" variant="primary">
               Start for free
-            </Link>
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -107,19 +104,27 @@ export default function Header() {
                 Pricing
               </Link>
               <div className="flex flex-col gap-3 pt-4 border-t border-neutral-100">
-                <Link
-                  href="/book-demo"
-                  className="px-4 py-2.5 text-center text-label-md text-neutral-700 border border-neutral-200 rounded-lg hover:bg-neutral-50 transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Book a demo
+                <Link href="/book-demo" onClick={() => setMobileMenuOpen(false)}>
+                  <motion.div
+                    className="px-4 py-2.5 text-center text-label-md text-neutral-700 border border-neutral-200 rounded-lg hover:bg-neutral-50 transition-colors"
+                    initial="rest"
+                    whileHover="hover"
+                    whileTap="tap"
+                    variants={buttonHoverVariants}
+                  >
+                    Book a demo
+                  </motion.div>
                 </Link>
-                <Link
-                  href="/signup"
-                  className="px-4 py-2.5 text-center bg-primary text-white rounded-lg text-label-md hover:bg-primary-600 transition-colors shadow-soft"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Start for free
+                <Link href="/signup" onClick={() => setMobileMenuOpen(false)}>
+                  <motion.div
+                    className="px-4 py-2.5 text-center bg-primary text-white rounded-lg text-label-md hover:bg-primary-600 transition-colors shadow-soft"
+                    initial="rest"
+                    whileHover="hover"
+                    whileTap="tap"
+                    variants={buttonHoverVariants}
+                  >
+                    Start for free
+                  </motion.div>
                 </Link>
               </div>
             </div>
